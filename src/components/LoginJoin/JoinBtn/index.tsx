@@ -1,3 +1,4 @@
+import React from 'react';
 import '../../../layouts/commonStyle.module.css';
 import '../../../layouts/commonStyle';
 import {BtnSmall} from '../../../layouts/commonStyle';

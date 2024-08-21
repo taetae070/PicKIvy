@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import '../../layouts/commonStyle';
+// import '../../layouts/commonStyle';
 import '../../layouts/commonStyle.module.css';
 import background from "../../img/house.BG.png";
 import RoomTypeInput  from "../../components/RoomTypeInput";

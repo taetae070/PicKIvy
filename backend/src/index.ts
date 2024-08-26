@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
+import userRoutes from './routes/users';
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -11,6 +12,7 @@ interface User {
   id: number;
   name: string;
   email: string;
+  notes: string;
 }
 
 // 데이터 파일 경로 설정
@@ -58,7 +60,8 @@ app.post('/api/users', (req: Request, res: Response) => {
   const newUser: User = {
     id: users.length > 0 ? users[users.length - 1].id + 1 : 1,
     name: req.body.name,
-    email: req.body.email
+    email: req.body.email,
+    notes: req.body.note
   };
   users.push(newUser);
   saveData(users);
@@ -88,6 +91,13 @@ app.delete('/api/users/:id', (req: Request, res: Response) => {
   saveData(newUsers);
   res.json({ message: 'User deleted' });
 });
+
+// 미들웨어 설정
+app.use(cors());
+app.use(express.json());
+
+// 라우트 설정
+app.use('/api/users', userRoutes);
 
 // 서버 실행
 app.listen(port, () => {

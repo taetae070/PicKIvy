@@ -1,5 +1,5 @@
 import useInput from '@hooks/useInput';
-import fetcher from '@utils/fetcher'; // 데이터를 가져오는 함수
+import fetcher from '@utils/fetcher'; // 데이터 가져오는 함수
 import React, { useCallback, useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
@@ -12,8 +12,8 @@ const SignUp = () => {
 
   const [email, onChangeEmail] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
-  const [pw, , setPw] = useInput('');  
-  const [pwCheck, , setPwCheck] = useInput('');  
+  const [pw, , setPw] = useInput(''); //handler 필요없어서 비워둠(대신 handlePwChange 커스텀핸들러 사용) 
+  const [pwCheck, , setPwCheck] = useInput(''); //이하비슷
   const [mismatchError, setMismatchError] = useState(false);
   const [signUpError, setSignUpError] = useState('');
   const [signUpSuccess, setSignUpSuccess] = useState(false);
@@ -22,9 +22,9 @@ const SignUp = () => {
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setPw(value);
-      setMismatchError(value !== pwCheck);
+      setMismatchError(value !== pwCheck); //같으면 false를 반환
     },
-    [pwCheck, setPw],
+    [pwCheck, setPw], //setPw: 필수는 아니지만 안전성을 위해 포함함
   );
 
   const handlePwCheckChange = useCallback(

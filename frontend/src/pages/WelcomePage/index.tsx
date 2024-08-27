@@ -3,6 +3,24 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import  {FlexCenter}  from "../../layouts/commonStyle";
 
+  const BackgroundVideo = styled.video`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensure video is behind other elements */
+  opacity: 0.5; /* Optional: To make the video slightly transparent */
+`;
+  
+  const Button = styled.button`
+    border: none;
+    background: none;
+    color: #333;
+    font-size: 50px;
+  `;
+
 interface WelcomeMessage {
     id: number;
     title: string;
@@ -11,13 +29,6 @@ interface WelcomeMessage {
   interface WelcomePageProps {
     // 필요한 props 타입을 정의
   }
-  
-  const Button = styled.button`
-    border: none;
-    background: none;
-    color: #333;
-    font-size: 50px;
-  `;
   
   const welcomeMessages: WelcomeMessage[] = [
     {
@@ -54,11 +65,17 @@ interface WelcomeMessage {
     };
   
     return (
+      <>
+      <BackgroundVideo autoPlay loop muted>
+        <source src="../../img/welcomePageBG.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </BackgroundVideo>
       <FlexCenter height="50vh" width="50vw">
         <Button type="button" onClick={indexHandler}>
           {welcomeMessages[currentIndex].title}
         </Button>
       </FlexCenter>
+      </>
     );
   };
   

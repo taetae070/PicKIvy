@@ -1,29 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import WelcomePage from './pages/WelcomePage';
 import WelcomePage from '@pages/WelcomePage';
 import HousePage from './pages/HousePage';
-import LoginModal from './components/LoginJoin/LoginModal';
-import LoginBtn from './components/LoginJoin/LoginBtn';
+import SignUp from '@pages/JoinPage';
 import { BrowserRouter as Switch,Routes, Route } from "react-router-dom";
 // import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState (false);
-
-  const handleModalClose = ()=>{
-    setIsModalOpen(false);
-  }
-
-  const handleModalOpen = ()=>{
-    setIsModalOpen(true);
-  }
 
   return (
     <Switch>
       <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/house" element={<HousePage />} />
-          <Route path="/loginPage" element={<LoginModal onClose={handleCloseClick}/>} />
+          <Route path="/sign-up" element={<SignUp />} /> 
         </Routes>
     </Switch>
         

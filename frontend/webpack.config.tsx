@@ -12,7 +12,7 @@ interface Configuration extends WebpackConfiguration {
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: Configuration = {
-  name: 'sleact',
+  name: 'PicKivy',
   mode: isDevelopment ? 'development' : 'production',
   devtool: isDevelopment ? 'inline-source-map' : 'hidden-source-map',
   resolve: {
@@ -29,7 +29,7 @@ const config: Configuration = {
   entry: {
     app: './src/index.tsx',
   },
-  target: ['web', 'es5'],
+  target: ['web', 'es6'],
   module: {
     rules: [
       {
@@ -73,7 +73,7 @@ const config: Configuration = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
     publicPath: '/dist/',
   },
   devServer: {

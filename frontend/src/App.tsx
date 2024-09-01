@@ -1,6 +1,9 @@
-import WelcomePage from '@pages/WelcomePage';
+import WelcomePage from './pages/WelcomePage';
 import HousePage from '@pages/HousePage';
 import SignUp from '@pages/JoinPage';
+// import WelcomePage from '@pages/WelcomePage';
+// import HousePage from '@pages/HousePage/index';
+// import SignUp from '@pages/JoinPage/index';
 import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
 
 

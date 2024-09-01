@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-// import '../../layouts/commonStyle';
-import '../../layouts/commonStyle.module.css';
-import background from "../../img/house.BG.png";
-import RoomTypeInput  from "../../components/RoomTypeInput";
-import LoginBtn from "@/components/LoginBtn";
-import JoinBtn from "@/";
+import '@layouts/commonStyle.module.css';
+import background from "@img/house.BG.png";
+import RoomTypeInput  from "@components/RoomTypeInput";
+import LoginBtn from "@components/LoginBtn";
+import JoinBtn from "@components/JoinBtn";
 
 const Wrapper = styled.section`
   background-image: url(${background});
@@ -26,7 +25,6 @@ const Form = styled.form`
 
 const Ol = styled.ol``;
 
-// House 컴포넌트의 타입 정의
 const HousePage: React.FC = () => {
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

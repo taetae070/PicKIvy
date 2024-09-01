@@ -20,16 +20,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
+      "@img/*": ["img/*"],
+      "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
-      "@typings/*": ["typings/*"]
+      "@pages/*": ["pages/*"]
     },
     },
-  "include": ["**/*"], 
+  "include": ["src/**/*"], 
   "exclude": ["./node_modules"] 
 }

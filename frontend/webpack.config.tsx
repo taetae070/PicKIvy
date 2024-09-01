@@ -23,7 +23,7 @@ const config: Configuration = {
       '@layouts': path.resolve(__dirname, 'src/layouts'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@utils': path.resolve(__dirname, 'src/utils'),
-      '@typings': path.resolve(__dirname, 'src/typings'),
+      '@img': path.resolve(__dirname, 'src/img'),
     },
   },
   entry: {
@@ -83,7 +83,7 @@ const config: Configuration = {
     static: { directory: path.resolve(__dirname, 'public') },
     proxy: {
       '/api/': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:5000',
         changeOrigin: true,
         ws: true,
       },

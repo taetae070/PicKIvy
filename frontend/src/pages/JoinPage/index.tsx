@@ -5,9 +5,10 @@ import axios from 'axios';
 import useSWR from 'swr';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from 'src/pages/JoinPage/styles';
 import { Link, useNavigate } from 'react-router-dom';
+import { HouseBackground, OverflowHidden, WhiteBG, FlexCenter } from 'src/layouts/commonStyle';
 
-const SignUp = () => {
-  const { data, mutate } = useSWR('/api/users', fetcher);
+const JoinPage = () => {
+  const { data, mutate, error } = useSWR('/api/users', fetcher);
   const navigate = useNavigate();
 
   const [email, onChangeEmail] = useInput('');
@@ -15,8 +16,8 @@ const SignUp = () => {
   const [pw, , setPw] = useInput(''); //handler 필요없어서 비워둠(대신 handlePwChange 커스텀핸들러 사용) 
   const [pwCheck, , setPwCheck] = useInput(''); //이하비슷
   const [mismatchError, setMismatchError] = useState(false);
-  const [signUpError, setSignUpError] = useState('');
-  const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const [joinError, setJoinError] = useState('');
+  const [joinSuccess, setJoinSuccess] = useState(false);
 
   const handlePwChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,8 +44,8 @@ const SignUp = () => {
       if (!mismatchError && nickname) {
         console.log('서버로 회원가입하기');
 
-        setSignUpError('');
-        setSignUpSuccess(false);
+        setJoinError('');
+        setJoinSuccess(false);
         axios
           .post('/api/users', {
             email,
@@ -53,73 +54,81 @@ const SignUp = () => {
           })
           .then((response) => {
             console.log(response);
-            setSignUpSuccess(true);
+            setJoinSuccess(true);
             mutate(); 
             navigate('/workspace/sleact/channel/일반'); 
           })
           .catch((error) => {
             console.log(error.response); 
-            setSignUpError(error.response.data);
+            setJoinError(error.response.data);
           });
       }
     },
-    [email, nickname, pw, mismatchError, setSignUpError, setSignUpSuccess, mutate, navigate],
+    [email, nickname, pw, mismatchError, setJoinError, setJoinSuccess, mutate, navigate],
   );
 
-  if (data === undefined) {
+  if (!data && !error) {
     return <div>로딩중...</div>;
   }
 
-  if (data) {
-    navigate('/house'); 
-    return null; }
+  // if (data) {
+  //   navigate('/house'); 
+  //   return null; }
 
   return (
     <div id="container">
-      <Header>Sleact</Header>
-      <Form onSubmit={onSubmit}>
-        <Label id="email-label">
-          <span>이메일 주소</span>
-          <div>
-            <Input type="email" id="email" name="email" value={email} onChange={onChangeEmail} />
-          </div>
-        </Label>
-        <Label id="nickname-label">
-          <span>닉네임</span>
-          <div>
-            <Input type="text" id="nickname" name="nickname" value={nickname} onChange={onChangeNickname} />
-          </div>
-        </Label>
-        <Label id="pw-label">  
-          <span>비밀번호</span>
-          <div>
-            <Input type="password" id="pw" name="pw" value={pw} onChange={handlePwChange} />  
-          </div>
-        </Label>
-        <Label id="pw-check-label">  
-          <span>비밀번호 확인</span>
-          <div>
-            <Input
-              type="password"
-              id="pw-check"
-              name="pw-check"
-              value={pwCheck} 
-              onChange={handlePwCheckChange}
-            />
-          </div>
-          {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>} 
-          {!nickname && <Error>닉네임을 입력해주세요.</Error>}
-          {signUpError && <Error>{signUpError}</Error>}
-          {signUpSuccess && <Success>회원가입되었습니다! 로그인해주세요.</Success>}
-        </Label>
-        <Button type="submit">회원가입</Button>
-      </Form>
-      <LinkContainer>
-        이미 회원이신가요?&nbsp;
-        <Link to="/login">로그인 하러가기</Link>
-      </LinkContainer>
+      <OverflowHidden/>
+      <HouseBackground isClickBtn={true}/>
+      <FlexCenter>
+        <WhiteBG>
+          <Header>나의 선택 기록하기
+          우리 함께 해봐요</Header>
+          <Form onSubmit={onSubmit}>
+            <Label id="email-label">
+              <span>email address</span>
+              <div>
+                <Input type="email" id="email" name="email" value={email} onChange={onChangeEmail} />
+              </div>
+            </Label>
+            <Label id="nickname-label">
+              <span>username</span>
+              <div>
+                <Input type="text" id="nickname" name="nickname" value={nickname} onChange={onChangeNickname} />
+              </div>
+            </Label>
+            <Label id="pw-label">
+              <span>password</span>
+              <div>
+                <Input type="password" id="pw" name="pw" value={pw} onChange={handlePwChange} />
+              </div>
+            </Label>
+            <Label id="pw-check-label">
+              <span>password confirm</span>
+              <div>
+                <Input
+                  type="password"
+                  id="pw-check"
+                  name="pw-check"
+                  value={pwCheck}
+                  onChange={handlePwCheckChange}
+                />
+              </div>
+              {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
+              {!nickname && <Error>닉네임을 입력해주세요.</Error>}
+              {joinError && <Error>{joinError}</Error>}
+              {joinSuccess && <Success>회원가입되었습니다! 로그인해주세요.</Success>}
+            </Label>
+            <Button type="submit">Join</Button>
+          </Form>
+        <LinkContainer>
+          이미 회원이신가요?&nbsp;
+          <Link to="/login">로그인 하러가기</Link>
+        </LinkContainer>
+        </WhiteBG>
+      </FlexCenter>
+        
     </div>
      );
   
 }
-export default SignUp;
+export default JoinPage;

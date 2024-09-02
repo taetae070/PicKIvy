@@ -1,6 +1,6 @@
 import WelcomePage from './pages/WelcomePage';
 import HousePage from 'src/pages/HousePage';
-import SignUp from 'src/pages/JoinPage';
+import JoinPage from 'src/pages/JoinPage';
 // import WelcomePage from '@pages/WelcomePage';
 // import HousePage from '@pages/HousePage/index';
 // import SignUp from '@pages/JoinPage/index';
@@ -14,7 +14,7 @@ function App() {
       <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/house" element={<HousePage />} />
-          <Route path="/sign-up" element={<SignUp />} /> 
+          <Route path="/join" element={<JoinPage />} /> 
         </Routes>
     </Router>
         

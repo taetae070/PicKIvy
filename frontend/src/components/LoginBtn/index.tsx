@@ -17,7 +17,7 @@ const LoginBtn: React.FC<LoginBtnProps> = ({ onLoginClick }) => {
     }
     return(
         <div>
-            <BtnSmall onClick={handleLoginClick}>Login</BtnSmall>
+            <BtnSmall onClick={handleLoginClick} isLogin={true}>Login</BtnSmall>
         </div>
     )
 }

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import  {FlexCenter}  from "src/layouts/commonStyle";
+import styled from "styled-components";
+import {RootStyle, OverflowHidden} from 'src/layouts/commonStyle';
 
   const BackgroundVideo = styled.video`
   position: fixed;
@@ -10,15 +11,19 @@ import  {FlexCenter}  from "src/layouts/commonStyle";
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1; /* Ensure video is behind other elements */
-  opacity: 0.5; /* Optional: To make the video slightly transparent */
+  z-index: -1; 
+  opacity: 0.4; 
 `;
   
   const Button = styled.button`
+    font-family: "Nanum Gothic Coding", monospace;
+    font-weight: 700;
     border: none;
     background: none;
-    color: #333;
-    font-size: 50px;
+    color: ${RootStyle.G};
+    font-size: 3.75rem;
+    width:1100px;
+    line-height: 5.625rem;
   `;
 
 interface WelcomeMessage {
@@ -26,9 +31,7 @@ interface WelcomeMessage {
     title: string;
   }
   
-  interface WelcomePageProps {
-    // 필요한 props 타입을 정의
-  }
+ 
   
   const welcomeMessages: WelcomeMessage[] = [
     {
@@ -38,20 +41,35 @@ interface WelcomeMessage {
     {
       id: 2,
       title:
-        "~ 연구에 따르면, 결과에 상관없이 선택을 '실행'한 사람이 60% 더 행복하다고 해요.",
+        "선택을 행동으로 옮긴 사람은\n 결과에 상관없이 60%\n 더 행복하다는 연구결과가 있어요",
     },
     {
       id: 3,
       title:
-        "결과가 어떻든 그 때 당시에는 우리에겐 최선의 선택이었음은 확실해요",
+        "결과에 상관없이 우리는\n 스스로에게 최고의 선택을 선물했어요",
+        // 결과에 상관없이 우리는 우리에게 최고의 선택을 선물했어요
+        // 결과가 어떻든, 그때 우리는 그 순간 최선의 선택을 했어요.
     },
     {
       id: 4,
-      title: "선택을 너무 겁내지 마세요. 우리 같이 선택해봐요.",
+      title: "소중한 나에게 나쁜 일이 생기도록\n 결정하지 않았을 테니까요.",
+    },
+    {
+      id: 5,
+      title: "선택을 너무 겁내지 마세요.\n 우리 이제 같이 선택해봐요.",
     },
   ];
   
-  const WelcomePage: React.FunctionComponent<WelcomePageProps> = () => {
+  const WelcomePage: React.FunctionComponent = () => {
+    // 비디오 재생 속도 조절
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+      if (videoRef.current) {
+        videoRef.current.playbackRate = 0.7;  
+      }
+    }, []);
+  
     const navigate = useNavigate();
     const [currentIndex, setCurrentIndex] = useState<number>(0);
   
@@ -66,12 +84,13 @@ interface WelcomeMessage {
   
     return (
       <>
-      <BackgroundVideo autoPlay loop muted>
-        <source src="../../img/welcomePageBG.mp4" type="video/mp4" />
+      <OverflowHidden /> 
+      <BackgroundVideo  ref={videoRef} autoPlay loop muted>
+        <source src="/directionBG.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </BackgroundVideo>
-      <FlexCenter height="50vh" width="50vw">
-        <Button type="button" onClick={indexHandler}>
+      <FlexCenter >
+        <Button type="button" onClick={indexHandler} style={{ whiteSpace: 'pre-line' }}>
           {welcomeMessages[currentIndex].title}
         </Button>
       </FlexCenter>

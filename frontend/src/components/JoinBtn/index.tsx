@@ -1,7 +1,5 @@
 import React from 'react';
-import '@layouts/commonStyle';
-import '@layouts/commonStyle.module.css';
-import {BtnSmall} from '@layouts/commonStyle';
+import {BtnSmall} from 'src/layouts/commonStyle';
 
 const JoinBtn: React.FC = () => {
     return(

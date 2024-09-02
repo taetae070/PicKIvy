@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '@layouts/commonStyle.module.css';
-import {BtnSmall} from '@layouts/commonStyle';
+import {BtnSmall} from 'src/layouts/commonStyle';
 
 interface LoginBtnProps {
     onLoginClick?: () => void;

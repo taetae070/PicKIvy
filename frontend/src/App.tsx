@@ -1,6 +1,6 @@
 import WelcomePage from './pages/WelcomePage';
-import HousePage from '@pages/HousePage';
-import SignUp from '@pages/JoinPage';
+import HousePage from 'src/pages/HousePage';
+import SignUp from 'src/pages/JoinPage';
 // import WelcomePage from '@pages/WelcomePage';
 // import HousePage from '@pages/HousePage/index';
 // import SignUp from '@pages/JoinPage/index';

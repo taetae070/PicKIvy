@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import  {FlexCenter}  from "@layouts/commonStyle";
-// import  {FlexCenter}  from "../../layouts/commonStyle";
+import  {FlexCenter}  from "src/layouts/commonStyle";
 
   const BackgroundVideo = styled.video`
   position: fixed;

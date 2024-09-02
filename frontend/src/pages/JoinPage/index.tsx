@@ -1,9 +1,9 @@
-import useInput from '@hooks/useInput';
-import fetcher from '@utils/fetcher'; // 데이터 가져오는 함수
+import useInput from 'src/hooks/useInput';
+import fetcher from 'src/utils/fetcher'; // 데이터 가져오는 함수
 import React, { useCallback, useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
-import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from '@pages/JoinPage/styles';
+import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from 'src/pages/JoinPage/styles';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {

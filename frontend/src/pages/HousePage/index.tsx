@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import '@layouts/commonStyle.module.css';
-import background from "@img/house.BG.png";
-import RoomTypeInput  from "@components/RoomTypeInput";
-import LoginBtn from "@components/LoginBtn";
-import JoinBtn from "@components/JoinBtn";
+import 'src/layouts/commonStyle.module.css';
+import background from "src/img/house.BG.png";
+import RoomTypeInput  from "src/components/RoomTypeInput";
+import LoginBtn from "src/components/LoginBtn";
+import JoinBtn from "src/components/JoinBtn";
 
 const Wrapper = styled.section`
   background-image: url(${background});

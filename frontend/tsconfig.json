@@ -20,16 +20,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@layouts/*": ["layouts/*"],
-      "@img/*": ["img/*"],
-      "@components/*": ["components/*"],
-      "@hooks/*": ["hooks/*"],
-      "@utils/*": ["utils/*"],
-      "@pages/*": ["pages/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@img/*": ["src/img/*"],
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@utils/*": ["src/utils/*"],
+      "@pages/*": ["src/pages/*"]
     },
     },
-  "include": ["src/**/*"], 
+  "include": ["**/*", "components", "hooks", "layouts", "pages", "utils", "App.tsx", "index.tsx", "react-app-env.d.ts", "setupTests.ts"], 
   "exclude": ["./node_modules"] 
 }

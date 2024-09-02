@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import './commonStyle.module.css';
 
+const RootStyle = {
+  B: '#16A4D0',
+  Baby: '#ABE3F5',
+  BtnStroke: '#91BED7',
+  G: '#1F6041',
+  Br: '#B15144',
+};
+
+
 interface FlexCenterProps {
   height?: string;
   width?: string;
@@ -112,4 +121,4 @@ color: #888;
 
 
 
-export { BtnSmall, Flex, FlexCenter, ModalOverlay, ModalContent, SocialBtnAll, SocialBtn, CloseBtn, Header, Footer, FooterLink, Notice };
+export { RootStyle, BtnSmall, Flex, FlexCenter, ModalOverlay, ModalContent, SocialBtnAll, SocialBtn, CloseBtn, Header, Footer, FooterLink, Notice };

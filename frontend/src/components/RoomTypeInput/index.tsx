@@ -21,7 +21,7 @@ interface FormInput {
 }
 
 const getInitialFormInput = (): FormInput => {
-  const savedFormInput = localStorage.getItem("formInputKey");
+  const savedFormInput = localStorage.getItem(" ");
   return savedFormInput ? JSON.parse(savedFormInput) : {
     roomtype: [
       { key: "a", value: "career" },
@@ -36,6 +36,7 @@ const getInitialFormInput = (): FormInput => {
 const RoomTypeInput: React.FC = () => {
   const [formInput, setFormInput] = useState<FormInput>(getInitialFormInput);
 
+  //localStorage: 문자열 형태의 데이터만 저장가능
   useEffect(() => {
     localStorage.setItem("formInputKey", JSON.stringify(formInput));
   }, [formInput]);

@@ -7,19 +7,6 @@ import JoinBtn from "src/components/JoinBtn";
 
 import {OverflowHidden, HouseBackground} from 'src/layouts/commonStyle';
 
-// const HouseBackground = styled.section`
-//   background-image: url(${background});
-//   background-size: 100% 110%;
-//   background-position: center center;
-//   background-repeat: no-repeat;
-//   width: 100vw;
-//   height: 100vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 1rem;
-// `;
-
 const Form = styled.form`
   position: relative;
 `;

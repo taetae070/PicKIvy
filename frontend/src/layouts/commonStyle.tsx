@@ -18,6 +18,7 @@ const OverflowHidden = createGlobalStyle`
   }
 `;
 
+
 interface HouseBgProps {
   isClickBtn?: boolean;
 }
@@ -63,7 +64,6 @@ interface BtnSmallProps {
   isJoin?: boolean;
 }
 
-
  const BtnSmall = styled.button<BtnSmallProps>`
   background-color:  ${RootStyle.B};
   color: white;
@@ -93,46 +93,13 @@ const WhiteBG = styled.div`
   margin: 0 auto; 
 `
 
-//login, join modal
-const ModalOverlay = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-width: 37.5rem;
-height: 33.75rem;
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 1000;
-background-color: rgba(0, 0, 0, 0.5);
-border: 3px solid #91BED7;
-border-radius: 14px;
-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-
-`;
-
-const ModalContent = styled.div`
-background-color: white;
-padding: 20px;
-border-radius: 10px;
-text-align: center;
-width: 300px;
-position: relative;
-`;
-
-const CloseBtn = styled.button`
-position: absolute;
-top: 10px;
-right: 10px;
-background: none;
-border: none;
-font-size: 20px;
-cursor: pointer;
-`;
-
 const Header = styled.h2`
-margin-bottom: 20px;
-font-size: 18px;
+text-align: center;
+margin-bottom: 3.125rem;
+margin-top: 3.125rem;
+font-size: 1rem;
+font-weight: 500;
+color: ${RootStyle.Lg};
 `;
 
 const SocialBtnAll = styled.div`
@@ -176,4 +143,4 @@ color: #888;
 
 
 
-export { RootStyle, OverflowHidden, HouseBackground, BtnSmall, WhiteBG, Flex, FlexCenter, ModalOverlay, ModalContent, SocialBtnAll, SocialBtn, CloseBtn, Header, Footer, FooterLink, Notice };
+export { RootStyle, OverflowHidden, HouseBackground, BtnSmall, WhiteBG, Flex, FlexCenter, SocialBtnAll, SocialBtn, Header, Footer, FooterLink, Notice };

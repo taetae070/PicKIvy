@@ -3,12 +3,13 @@ import fetcher from 'src/utils/fetcher'; // 데이터 가져오는 함수
 import React, { useCallback, useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
-import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from 'src/pages/JoinPage/styles';
+import { Success, Form, Error, Label, Input, LinkContainer, Button } from 'src/pages/JoinPage/styles';
 import { Link, useNavigate } from 'react-router-dom';
-import { HouseBackground, OverflowHidden, WhiteBG, FlexCenter } from 'src/layouts/commonStyle';
+import { HouseBackground, OverflowHidden, WhiteBG, FlexCenter, Header } from 'src/layouts/commonStyle';
+import CloseBtn from 'src/components/CloseBtn'
 
 const JoinPage = () => {
-  const { data, mutate, error } = useSWR('/api/users', fetcher);
+  const { data, mutate, error } = useSWR('http://localhost:5001/api/users', fetcher);
   const navigate = useNavigate();
 
   const [email, onChangeEmail] = useInput('');
@@ -47,15 +48,15 @@ const JoinPage = () => {
         setJoinError('');
         setJoinSuccess(false);
         axios
-          .post('/api/users', {
+          .post('http://localhost:5001/api/users', {
             email,
             nickname,
-            pw,  
+            password: pw,  
           })
           .then((response) => {
             console.log(response);
             setJoinSuccess(true);
-            mutate(); 
+            mutate('http://localhost:5001/api/users', true); 
             navigate('/workspace/sleact/channel/일반'); 
           })
           .catch((error) => {
@@ -66,6 +67,10 @@ const JoinPage = () => {
     },
     [email, nickname, pw, mismatchError, setJoinError, setJoinSuccess, mutate, navigate],
   );
+
+  const handleClose = () => {
+    navigate('/house'); // /house 페이지로 이동
+  };
 
   if (!data && !error) {
     return <div>로딩중...</div>;
@@ -81,8 +86,9 @@ const JoinPage = () => {
       <HouseBackground isClickBtn={true}/>
       <FlexCenter>
         <WhiteBG>
-          <Header>나의 선택 기록하기
+          <Header>나의 선택 기록,
           우리 함께 해봐요</Header>
+          <CloseBtn onClose={handleClose}/>
           <Form onSubmit={onSubmit}>
             <Label id="email-label">
               <span>email address</span>

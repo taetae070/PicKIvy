@@ -7,10 +7,11 @@ const router = express.Router();
 
 // 사용자 생성 (MongoDB)
 router.post('/users', async (req: Request, res: Response) => {
+  console.log(req.body, '*')
   try {
     // 요청 본문 검증
     const value = await userSchema.validateAsync(req.body);
-    const { username, email, password } = value;
+    const { username, email, password, passwordConfirm } = value;
 
     // 기존 사용자 확인
     const existingUser = await UserModel.findOne({ email });
@@ -25,7 +26,8 @@ router.post('/users', async (req: Request, res: Response) => {
     const newUser = new UserModel({
       username,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      passwordConfirm
     });
 
     const savedUser = await newUser.save();
@@ -38,6 +40,8 @@ router.post('/users', async (req: Request, res: Response) => {
     // 기타 에러 처리
     res.status(500).json({ message: '사용자 생성에 실패했습니다.', error });
   }
+  
+ 
 });
 
 // 잘못된 메서드 요청에 대한 405 처리

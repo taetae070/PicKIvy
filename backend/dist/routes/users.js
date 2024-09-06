@@ -42,7 +42,9 @@ router.post('/', (req, res) => {
     const newUser = {
         id: users.length > 0 ? users[users.length - 1].id + 1 : 1,
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm
     };
 
     users.push(newUser);

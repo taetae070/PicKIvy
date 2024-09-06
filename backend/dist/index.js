@@ -24,7 +24,7 @@ const saveData = (data) => {
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 // 간단한 API 엔드포인트
-app.get('/api/hello', (req, res) => {
+app.get('/api/users', (req, res) => {
     res.json({ message: 'Hello from the TypeScript backend!' });
 });
 // 모든 사용자 조회

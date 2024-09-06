@@ -23,9 +23,9 @@ app.use(cors());
 app.use('/api/users', userRoutes);
 
 // 간단한 API 엔드포인트 (테스트용)
-app.post('/api/users', (_req: Request, res: Response) => {
-  res.json({ message: 'Hello from the TypeScript backend!' });
-});
+// app.post('/api/users', (_req: Request, res: Response) => {
+//   res.json({ message: 'Hello from the TypeScript backend!' },);
+// });
 
 // 서버 실행
 app.listen(port, () => {

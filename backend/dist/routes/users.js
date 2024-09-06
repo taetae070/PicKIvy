@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
     // 입력 유효성 검사
     const { error } = userValidator_1.userSchema.validate(req.body);
     if (error) {
-        return res.status(400).json({ message: error.details[0].message });
+        return res.status(400).json({ message: error.details[0].message, passwordConfirm: error.details[0].passwordConfirm });
     }
 
     const users = loadData();

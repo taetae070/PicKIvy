@@ -9,6 +9,8 @@ import { HouseBackground, OverflowHidden, WhiteBG, FlexCenter, Header } from 'sr
 import CloseBtn from 'src/components/CloseBtn';
 
 const JoinPage = () => {
+
+
   const { data, mutate, error } = useSWR('http://localhost:5001/api/users', fetcher);
   const navigate = useNavigate();
 
@@ -67,7 +69,14 @@ const JoinPage = () => {
           })
           .catch((error) => {
             console.log(error.response); 
-            setJoinError(error.response ? error.response.data : 'Unexpected error occurred.');
+            // 에러 상태코드 404 대신 400을 기대하도록 수정합
+            if (error.response && error.response.status === 400) {
+              setJoinError(error.response.data.message);
+            } else {
+              setJoinError('Unexpected error occurred.');
+            }
+            // console.log(error.response); 
+            // setJoinError(error.response ? error.response.data : 'Unexpected error occurred.');
           });
       }
     },

@@ -17,15 +17,13 @@ mongoose.connect('mongodb://localhost:27017/mydatabase')
 
 // 미들웨어 설정
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:3000',  // 프론트엔드 URL 허용
-}));
+app.use(cors());
 
 // MongoDB 관련 사용자 API는 userRoutes에서 처리
 app.use('/api/users', userRoutes);
 
 // 간단한 API 엔드포인트 (테스트용)
-app.post('/api/hello', (req: Request, res: Response) => {
+app.post('/api/hello', (_req: Request, res: Response) => {
   res.json({ message: 'Hello from the TypeScript backend!' });
 });
 
@@ -33,3 +31,5 @@ app.post('/api/hello', (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+export default app;

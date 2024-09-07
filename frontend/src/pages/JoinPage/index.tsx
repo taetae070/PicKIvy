@@ -16,33 +16,34 @@ const JoinPage = () => {
 
   // 이메일, 유저네임, 비밀번호 관련 상태 관리
   const [email, onChangeEmail] = useInput('');
-  const [username, onChangeUsername] = useInput('');  // nickname을 username으로 변경
+  const [username, onChangeUsername] = useInput('');  
   const [pw, , setPw] = useInput(''); // handler 필요없어서 비워둠 (대신 handlePwChange 커스텀 핸들러 사용) 
-  const [pwCheck, , setPwCheck] = useInput(''); // 이하 비슷
+  const [pwCheck, , setPwCheck] = useInput(''); 
 
-  const [mismatchError, setMismatchError] = useState(false);
+  const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [joinError, setJoinError] = useState('');
   const [joinSuccess, setJoinSuccess] = useState(false);
 
-  useEffect(()=>{
-    setJoinError("");
-  },[email, username, pw, pwCheck])
+  //메세지 초기화
+  // useEffect(()=>{
+  //   setJoinError("");
+  // },[email, username, pw, pwCheck])
 
   // 비밀번호 확인 로직
   const handlePwChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setPw(value);
-      setMismatchError(value !== pwCheck); // 비밀번호 확인 불일치 여부
+      setIsPasswordMatch(value !== pwCheck); // 비밀번호 불일치 여부
     },
-    [pwCheck, setPw], // 의존성 배열에 필요한 값들
+    [pwCheck, setPw], 
   );
 
   const handlePwCheckChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setPwCheck(value);
-      setMismatchError(value !== pw);
+      setIsPasswordMatch(value !== pw);
     },
     [pw, setPwCheck],
   );
@@ -50,12 +51,11 @@ const JoinPage = () => {
   // 회원가입 제출 로직
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+      e.preventDefault(); //새로고침 방지: 
 
-      // 비밀번호 일치 여부와 username 확인
-      if (!mismatchError && username) {
-        console.log('서버로 회원가입 요청 중...');
-
+      // 비밀번호 일치, username 입력확인
+      if (isPasswordMatch && username) {
+        // console.log('서버로 회원가입 요청 중...');
         setJoinError('');
         setJoinSuccess(false);
         axios
@@ -86,7 +86,7 @@ const JoinPage = () => {
           });
       }
     },
-    [email, username, pw, pwCheck, mismatchError, setJoinError, setJoinSuccess, mutate, navigate],  // 의존성 배열에 username 반영
+    [email, username, pw, pwCheck, isPasswordMatch, setJoinError, setJoinSuccess, mutate, navigate],  // 의존성 배열에 username 반영
   );
 
   const handleClose = () => {
@@ -136,7 +136,7 @@ const JoinPage = () => {
                   onChange={handlePwCheckChange}
                 />
               </div>
-              {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
+              {isPasswordMatch && <Error>비밀번호가 일치하지 않습니다.</Error>}
               {!username && <Error>유저네임을 입력해주세요.</Error>}
               {joinError && <Error>{joinError}</Error>}
               {joinSuccess && <Success>회원가입되었습니다! 로그인해주세요.</Success>}

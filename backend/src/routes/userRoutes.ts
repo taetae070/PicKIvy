@@ -5,9 +5,11 @@ import { userSchema } from '../validators/userValidator';
 
 const router = express.Router();
 
+// router.post('/' : /다음이 최상위 접속
 // 사용자 생성 (MongoDB)
-router.post('/users', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
   console.log(req.body, '*')
+  // res.status(500).json({ message: '사용자 생성에 실패했습니다.' });
   try {
     // 요청 본문 검증
     const value = await userSchema.validateAsync(req.body);
@@ -45,7 +47,7 @@ router.post('/users', async (req: Request, res: Response) => {
 });
 
 // 잘못된 메서드 요청에 대한 405 처리
-router.all('/users', (req: Request, res: Response) => {
+router.all('/', (req: Request, res: Response) => {
   res.status(405).send('Method Not Allowed');
 });
 

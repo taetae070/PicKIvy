@@ -1,6 +1,6 @@
 import useInput from 'src/hooks/useInput';
 import fetcher from 'src/utils/fetcher'; // 데이터 가져오는 함수
-import React, { useCallback, useState, ChangeEvent } from 'react';
+import React, { useCallback, useState, ChangeEvent, useEffect } from 'react';
 import axios from 'axios';
 import useSWR from 'swr';
 import { Success, Form, Error, Label, Input, LinkContainer, Button } from 'src/pages/JoinPage/styles';
@@ -23,6 +23,10 @@ const JoinPage = () => {
   const [mismatchError, setMismatchError] = useState(false);
   const [joinError, setJoinError] = useState('');
   const [joinSuccess, setJoinSuccess] = useState(false);
+
+  useEffect(()=>{
+    setJoinError("");
+  },[email, username, pw, pwCheck])
 
   // 비밀번호 확인 로직
   const handlePwChange = useCallback(
@@ -59,8 +63,10 @@ const JoinPage = () => {
             email,
             username, 
             password: pw,  
-            passwordConfirm: pwCheck 
-          })
+            passwordConfirm: pwCheck,
+          },
+          // {headers: {'content-type': 'application/x-www-form-urlencoded'}}: 전송 데이터 타입 정하고 싶을 때 적어줌
+        )
           .then((response) => {
             console.log(response);
             setJoinSuccess(true);

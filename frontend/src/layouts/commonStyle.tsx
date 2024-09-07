@@ -46,7 +46,7 @@ interface FlexCenterProps {
   height?: string;
   width?: string;
 }
- const FlexCenter = styled.form<FlexCenterProps>`
+ const FlexCenter = styled.div<FlexCenterProps>`
  display: flex;
   justify-content: center; 
   align-items: center;     

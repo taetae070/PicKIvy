@@ -1,6 +1,7 @@
 // src/validators/userValidator.ts
 import Joi from 'joi';
 
+//사용자가 입력한 데이터가 서버로 전송되기 전에 그 데이터가 올바른 형식인지 확인
 export const userSchema = Joi.object({
   username: Joi.string().min(3).required(),
   email: Joi.string().email().required(),

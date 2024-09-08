@@ -23,11 +23,6 @@ app.use(cors());
 // MongoDB 관련 사용자 API는 userRoutes에서 처리, /api/users에 접속할때userRoutes을 이용하겠다. 
 app.use('/api/users', userRoutes);
 
-// 간단한 API 엔드포인트 (테스트용)
-// app.get('/api/users', (_req: Request, res: Response) => {
-//   res.json({ message: 'Hello from the TypeScript backend!' },);
-// });
-
 // 서버 실행
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

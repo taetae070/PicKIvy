@@ -46,6 +46,17 @@ router.post('/', async (req: Request, res: Response) => {
  
 });
 
+// 사용자 목록 조회
+router.get('/', async (req: Request, res: Response) => {
+  try {
+    // MongoDB에서 모든 사용자 정보를 가져옴
+    const users = await UserModel.find();  // UserModel은 MongoDB 모델
+    res.status(200).json(users);  // 사용자 목록을 응답
+  } catch (error) {
+    res.status(500).json({ message: '사용자 목록을 가져오는 데 실패했습니다.', error });
+  }
+});
+
 // 잘못된 메서드 요청에 대한 405 처리
 router.all('/', (req: Request, res: Response) => {
   res.status(405).send('Method Not Allowed');

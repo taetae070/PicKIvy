@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { HouseBackground, OverflowHidden, WhiteBG, FlexCenter, Header } from 'src/layouts/commonStyle';
 import CloseBtn from 'src/components/CloseBtn';
 
-const JoinPage = () => {
+const LoginPage = () => {
 
   const { data, mutate, error } = useSWR('http://localhost:5001/api/users', fetcher);
   const navigate = useNavigate();
@@ -45,12 +45,7 @@ const JoinPage = () => {
     [pw, setPwCheck],
   );
 
-  //메세지 초기화
-  //setter는 setJoinError를 쓰는 함수이다.? 그래서 setJoinError의 타입과 같은 타입으로 맞춰줘야한다.
-  //setJoinError에 호버하면 const setJoinError: React.Dispatch<React.SetStateAction<string>>이런게 뜨는데 이거랑 똑같이 맞춰줘야한다.
-  //상태업데이트도 하고, 에러뜨고 인풋에 입력하면 초기화하게 만드는 함수
-  //setter함수에 e를 넣어서 업데이트
-  //setter를 쓰는 이유는 각 인풋마다 들어갈 함수가 다르기때문에 광범위하게 적용하기 위해서 사용하는 것이다. 
+
   const handleInputReset = (setter: typeof onChangeEmail) => (e: ChangeEvent<HTMLInputElement>) => {
     setter(e) // 상태 업데이트
     setJoinError('');  //인풋초기화
@@ -122,18 +117,14 @@ const JoinPage = () => {
                 <Input type="email" id="email" name="email" value={email} onChange={handleInputReset(onChangeEmail)} />
               </div>
             </Label>
-            <Label id="username-label">
-              <span>username</span>
-              <div>
-                <Input type="text" id="username" name="username" value={username} onChange={handleInputReset(onChangeUsername)} /> {/* nickname -> username */}
-              </div>
-            </Label>
+        
             <Label id="pw-label">
               <span>password</span>
               <div>
                 <Input type="password" id="pw" name="pw" value={pw} onChange={handleInputReset(handlePwChange)} />
               </div>
             </Label>
+            
             <Label id="pw-check-label">
               <span>password confirm</span>
               <div>
@@ -145,21 +136,15 @@ const JoinPage = () => {
                   onChange={handleInputReset(handlePwCheckChange)}
                 />
               </div>
-              {pwCheck.length > 0 && !isPasswordMatch && <Error>비밀번호가 일치하지 않습니다.</Error>}
-              {hasSubmitted &&!username && <Error>유저네임을 입력해주세요.</Error>}
-              {joinError && <Error>{joinError}</Error>}
-              {joinSuccess && <Success>회원가입되었습니다! 로그인해주세요.</Success>}
+              {/* {pwCheck.length > 0 && !isPasswordMatch && <Error>비밀번호가 일치하지 않습니다.</Error>}
+              {hasSubmitted &&!username && <Error>유저네임을 입력해주세요.</Error>} */}
             </Label>
-            <Button type="submit">Join</Button>
+            <Button type="submit">Login</Button>
           </Form>
-          <LinkContainer>
-            이미 회원이신가요?&nbsp;
-            <Link to="/login">로그인 하러가기</Link>
-          </LinkContainer>
         </WhiteBG>
       </FlexCenter>
     </div>
   );
 };
 
-export default JoinPage;
+export default LoginPage;

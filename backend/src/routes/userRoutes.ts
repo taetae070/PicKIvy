@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt'; //비번 암호화
 import UserModel from '../types/User';
 import { userSchema } from '../validators/userValidator';
 
@@ -25,7 +25,7 @@ if (existingUsername) {
 
 
     // 비밀번호 해싱
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10); //값을 높일수록 비밀번호 해싱 과정이 오래 걸리지만 더 안전함
 
     // 새로운 사용자 생성 및 저장
     const newUser = new UserModel({

@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/mydatabase')
 
 // 미들웨어 설정
 app.use(express.json()); //클라이언트에서 JSON 형식의 데이터를 보낼 때 이를 파싱
-app.use(express.urlencoded({extended:false})); //URL-encoded 데이터를 파싱해서 사용할 수 있게함 (주로 HTML 폼 데이터를 처리할 때 사용)
+app.use(express.urlencoded({extended:false})); //URL-encoded 데이터를 파싱 (주로 HTML 폼 데이터를 처리할 때 사용, 파싱:데이터를 변환하는 과정)
 app.use(cors()); //CORS 설정을 활성화하여, 외부에서 서버에 접근할 수 있도록 허용
 
 // MongoDB 관련 사용자 API는 userRoutes에서 처리, /api/users에 접속할때userRoutes을 이용하겠다. 

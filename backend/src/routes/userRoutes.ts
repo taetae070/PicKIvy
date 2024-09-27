@@ -19,9 +19,9 @@ router.post('/', async (req: Request, res: Response) => {
     }
 
     const existingUsername = await UserModel.findOne({ username });
-if (existingUsername) {
-  return res.status(400).json({ message: '이미 존재하는 닉네임입니다.' });
-}
+    if (existingUsername) {
+      return res.status(400).json({ message: '이미 존재하는 닉네임입니다.' });
+    }
 
 
     // 비밀번호 해싱
